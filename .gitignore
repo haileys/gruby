@@ -1,0 +1,5 @@
+ruby/ruby-1.9.3-p286.tar.gz
+ruby/ruby-1.9.3-p286
+*.o
+*.dylib
+*.swp
