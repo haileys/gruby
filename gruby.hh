@@ -18,10 +18,19 @@ gruby_L;
 extern VALUE
 cGMod;
 
+extern VALUE
+cLua;
+
 extern "C" void
 Msg(const char* fmt);
 
 char*
 gruby_to_s(VALUE v);
+
+VALUE
+gruby_lua_object_from_stack();
+
+void
+gruby_lua_init();
 
 #endif

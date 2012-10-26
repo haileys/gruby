@@ -2,14 +2,11 @@
 #include <cstdio>
 #include "gruby.hh"
 
-char*
-environ[] = { (char*)"GMOD=true", NULL };
+char* environ[] = { (char*)"GMOD=true", NULL };
 
-lua_State*
-gruby_L;
+lua_State* gruby_L;
 
-VALUE
-cGMod;
+VALUE cGMod;
 
 static char*
 gruby_to_s_(VALUE v)
@@ -61,7 +58,7 @@ gruby_eval(lua_State* state)
 }
 
 static VALUE
-gruby_msg(int argc, VALUE* argv, VALUE self)
+GRuby_msg(int argc, VALUE* argv, VALUE self)
 {
     for(int i = 0; i < argc; i++) {
         Msg(gruby_to_s(argv[i]));
@@ -90,7 +87,9 @@ gmod13_open(lua_State* state)
     LUA->SetTable(-3);
     
     cGMod = rb_define_module("GMod");
-    rb_define_singleton_method(cGMod, "msg", (VALUE(*)(...))gruby_msg, -1);
+    rb_define_module_function(cGMod, "msg", (VALUE(*)(...))GRuby_msg, -1);
+    
+    gruby_lua_init();
     
     Msg("[gruby] Ready to rock and roll.\n");
     
